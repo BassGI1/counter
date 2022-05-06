@@ -16,6 +16,7 @@ export default function Box({colour, day, boxArray, setBoxArray, progess, setPro
                                 return arr
                             })
                     }
+                    return x
                 })
                 setProgress(x => {
                     let y = {...x}
@@ -32,6 +33,7 @@ export default function Box({colour, day, boxArray, setBoxArray, progess, setPro
                                 return arr
                             })
                     }
+                    return x
                 })
                 setProgress(x => {
                     let y = {...x}
@@ -48,6 +50,7 @@ export default function Box({colour, day, boxArray, setBoxArray, progess, setPro
                                 return arr
                             })
                     }
+                    return x
                 })
                 setProgress(x => {
                     let y = {...x}
@@ -64,6 +67,7 @@ export default function Box({colour, day, boxArray, setBoxArray, progess, setPro
                                 return arr
                             })
                     }
+                    return x
                 })
                 setProgress(x => {
                     let y = {...x}

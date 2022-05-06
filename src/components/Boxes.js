@@ -26,6 +26,7 @@ export default function Boxes({month}) {
                 })
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [numDays])
 
     return (
