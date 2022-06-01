@@ -5,7 +5,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 
 export default function App() {
 
-  const month = useRef(new Date().getUTCMonth())
+  const month = useRef(new Date().getMonth())
   const day = useRef(new Date().getDate())
   const year = useRef(new Date().getFullYear())
 
