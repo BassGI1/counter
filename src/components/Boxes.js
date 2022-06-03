@@ -8,7 +8,9 @@ class day{
     }
 }
 
-export default function Boxes({month}) {
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+export default function Boxes({month, dummy, setDummy}) {
 
     const numDays = month === 1 ? 28 : month%2 ? 30 : 31
     const [boxArray, setBoxArray] = useState(JSON.parse(localStorage.getItem('counterInfo')) || [])
@@ -32,13 +34,43 @@ export default function Boxes({month}) {
     return (
 
         <div className="boxes">
-            {boxArray.length && boxArray.map(x => <Box colour={x.colour} day={x.day} boxArray={boxArray} setBoxArray={setBoxArray} progress={progress} setProgress={setProgress} key={x.day}/>)}
+            {boxArray.length && boxArray.map(x => <Box colour={x.colour} day={x.day} boxArray={boxArray} setBoxArray={setBoxArray} setProgress={setProgress} key={x.day}/>)}
 
             <div className="progress">
-                {`Progress: ${progress.score}/${progress.days}`}
+                {`Total: ${progress.score}/${progress.days}`}
             </div>
 
             <div style={{position: "absolute", left: "13vh", top: "5vh"}} className={`button ${animate ? "animate" : ''}`} onClick={() => {
+                if (boxArray[boxArray.length - 1].colour !== "white"){
+                    let string = ""
+                    for (let x = 0; x < numDays; ++x){
+                        if (boxArray[x].colour === "rgb(186, 41, 41)"){
+                            string += "r"
+                        }
+                        else if (boxArray[x].colour === "rgb(186, 128, 41)"){
+                            string += "y"
+                        }
+                        else if (boxArray[x].colour === "rgb(41, 186, 41)"){
+                            string += "g"
+                        }
+                        else{
+                            string += "w"
+                        }
+                    }
+                    if (dummy.length && !dummy[dummy.length - 1].key.includes(months[month])){
+                        setDummy(x => {
+                            let dum = [...x]
+                            let obj = {key: `${months[month]} ${new Date().getFullYear()}`, record: string}
+                            dum.push(obj)
+                            console.log("black")
+                            return dum
+                        })
+                    }
+                    else if (!dummy.length){
+                        setDummy([{key: `${months[month]} ${new Date().getFullYear()}`, record: string}])
+                    }
+                    localStorage.setItem('dummy', JSON.stringify(dummy))
+                }
                 localStorage.setItem('counterInfo', JSON.stringify(boxArray))
                 setProgress(x => {
                     let y = {...x}

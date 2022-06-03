@@ -2,7 +2,7 @@ import React from "react";
 
 const colours = ["rgb(186, 41, 41)", "rgb(186, 128, 41)", "rgb(41, 186, 41)"]
 
-export default function Box({colour, day, boxArray, setBoxArray, progess, setProgress}) {
+export default function Box({colour, day, boxArray, setBoxArray, setProgress}) {
 
     return (
 
