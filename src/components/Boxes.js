@@ -12,7 +12,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 
 export default function Boxes({month, dummy, setDummy}) {
 
-    const numDays = month === 1 ? 28 : month%2 ? 30 : 31
+    const numDays = month === 1 ? 28 : month < 7 ? month % 2 ? 30 : 31 : month % 2 ? 31 : 30
     const [boxArray, setBoxArray] = useState(JSON.parse(localStorage.getItem('counterInfo')) || [])
     const [progress, setProgress] = useState(JSON.parse(localStorage.getItem('progress')) || {days: 0, score: 0})
     const [animate, setAnimate] = useState(() => false)
