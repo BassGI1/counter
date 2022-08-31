@@ -16,6 +16,7 @@ export default function Boxes({month, dummy, setDummy}) {
     const [boxArray, setBoxArray] = useState(JSON.parse(localStorage.getItem('counterInfo')) || [])
     const [progress, setProgress] = useState(JSON.parse(localStorage.getItem('progress')) || {days: 0, score: 0})
     const [animate, setAnimate] = useState(() => false)
+    const [grow, setGrow] = useState(() => false)
 
     useEffect(() => {
         if (boxArray.length !== numDays){
@@ -36,8 +37,8 @@ export default function Boxes({month, dummy, setDummy}) {
         <div className="boxes">
             {boxArray.length && boxArray.map(x => <Box colour={x.colour} day={x.day} boxArray={boxArray} setBoxArray={setBoxArray} setProgress={setProgress} key={x.day}/>)}
 
-            <div className="progress">
-                {`Total: ${progress.score}/${progress.days}`}
+            <div className={`progress ${grow ? "grow" : ""}`} onMouseEnter={() => {setGrow(true)}} onMouseLeave={() => setGrow(false)}>
+                {!grow ? `Total: ${progress.score}/${progress.days}` : "How it Works: Red: -1, Yellow: 0, Green: +1"}
             </div>
 
             <div style={{position: "absolute", left: "13vh", top: "5vh"}} className={`button ${animate ? "animate" : ''}`} onClick={() => {

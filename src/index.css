@@ -169,3 +169,19 @@
   z-index: 100;
   color: black;
 }
+
+.grow{
+  animation: growing 2s both;
+}
+
+@keyframes growing {
+  0% {
+    width: 10.5vw;
+    height: 7vh;
+    top: 5vh;
+    right: 13vh;
+  }
+  100% {
+    width: 30vw;
+  }
+}
