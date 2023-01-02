@@ -29,6 +29,19 @@ export default function Boxes({month, dummy, setDummy}) {
                 })
             }
         }
+        if (!dummy[dummy.length - 1].key.includes(months[month])){
+            const dum = [...dummy, {key: `${months[month]} ${new Date().getFullYear()}`}]
+            localStorage.setItem('dummy', JSON.stringify(dum))
+            setDummy(dum)
+            setBoxArray([])
+            for (let r = 0; r < numDays; ++r){
+                setBoxArray(x => {
+                    let y = [...x]
+                    y.push(new day(r + 1))
+                    return y
+                })
+            }
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [numDays])
 
@@ -58,15 +71,16 @@ export default function Boxes({month, dummy, setDummy}) {
                             string += "w"
                         }
                     }
-                    if (dummy.length && !dummy[dummy.length - 1].key.includes(months[month])){
+                    if (dummy.length){
                         setDummy(x => {
-                            let dum = [...x]
-                            let obj = {key: `${months[month]} ${new Date().getFullYear()}`, record: string}
-                            dum.push(obj)
-                            console.log("black")
-                            return dum
+                            let y = [...x]
+                            y[y.length - 1].record = string
+                            return y
                         })
                     }
+                    // else if (dummy[dummy.length - 1].key.includes("January") || dummy[dummy.length - 1].key.includes("August")){
+                    //     dummy[dummy.length - 1].record = string
+                    // }
                     else if (!dummy.length){
                         setDummy([{key: `${months[month]} ${new Date().getFullYear()}`, record: string}])
                     }

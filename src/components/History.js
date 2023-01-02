@@ -28,10 +28,15 @@ export default function History({setRenderHistory, dummy}) {
                 </nav>
 
                 <div className="monthgrid">
-                    {dummy.map(x => <div className="keymonth" style={{width: `${dummy.length > 6 ? "23vw" : "24.25vw"}`}} onClick={() => {
-                        setMonth(x)
-                        setRenderMonth(true)
-                    }} >{x.key}</div>)}
+                    {dummy.map(x => {
+                        if (x.record){
+                            return <div className="keymonth" style={{width: `${dummy.length > 6 ? "23vw" : "24.25vw"}`}} onClick={() => {
+                                setMonth(x)
+                                setRenderMonth(true)
+                            }} >{x.key}</div>
+                        }
+                        return <div></div>
+                    })}
                 </div>
 
             </div>
