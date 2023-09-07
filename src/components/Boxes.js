@@ -29,7 +29,7 @@ export default function Boxes({month, dummy, setDummy}) {
                 })
             }
         }
-        if (!dummy[dummy.length - 1].key.includes(months[month])){
+        if (dummy.length && !dummy[dummy.length - 1].key.includes(months[month])){
             const dum = [...dummy, {key: `${months[month]} ${new Date().getFullYear()}`}]
             localStorage.setItem('dummy', JSON.stringify(dum))
             setDummy(dum)
